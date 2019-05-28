@@ -1,0 +1,5 @@
+1.- El archivo .gitignore especifica que archivos debe ignorar git al hacer un commit. Es decir el commit se realiza como si esos archivos no existieran.
+
+En cuanto a limitaciones no puede ignorar archivos ya trackeados por git. El archivo .gitignore tampoco puede ignorarse a si mismo.
+
+
