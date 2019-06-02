@@ -2,4 +2,19 @@
 
 En cuanto a limitaciones no puede ignorar archivos ya trackeados por git. El archivo .gitignore tampoco puede ignorarse a si mismo.
 
+2.- El archivo .travis.yml contiene las opciones de configuracion que necesita Travis para poder ejecutar el proyecto.
+
+Explicacion de cada linea:
+
+language: php                                 //Especifica el lenguaje de programacion usado
+php:										  //Version del lenguaje
+  - 7.2
+
+install:									  //Comandos a ejecutar durante el paso de installacion
+  - composer update --prefer-source			  //Indica al composer que debe clonar el codigo fuente de los 
+  											  //paquetes
+
+script:										  //Comandos a ejecutar durante el paso script
+  - php vendor/bin/phpunit --color tests	  //Ejecuta las pruebas y colorea la salida por terminal
+
 
