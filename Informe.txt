@@ -18,3 +18,4 @@ script:										  //Comandos a ejecutar durante el paso script
   - php vendor/bin/phpunit --color tests	  //Ejecuta las pruebas y colorea la salida por terminal
 
 
+6.- El comentario {@inheritdoc} en el caso de CartonJs y CartonEjemplo significa que las clases heredan la documentacion de sus superclase, en este caso CartonInterface. Esto facilita la creacion de la documentacion de la API.
