@@ -6,10 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 class VerificacionesAvanzadasCartonTest extends TestCase {
 
+$carton = new CartonEjemplo;
   /**
    * Verifica que los números del carton se encuentren en el rango 1 a 90.
    */
-  public function testUnoANoventa(CartonInterface $carton) {
+  public function testUnoANoventa() {
     foreach ($carton->filas() as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
         $this->assertFalse(($celda > 90) || ($celda < 1));
