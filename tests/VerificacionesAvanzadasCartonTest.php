@@ -61,7 +61,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
 		$cont++;
 	} 		
 	}  
-$this->assertEquals(3, cont);
+$this->assertEquals(3, $cont);
   }
 
   /**
