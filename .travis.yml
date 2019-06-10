@@ -1,1 +1,9 @@
-asdfklj
+language: php
+php:
+  - 7.2
+
+install:
+  - composer update --prefer-source
+
+script:
+  - php vendor/bin/phpunit --color tests
