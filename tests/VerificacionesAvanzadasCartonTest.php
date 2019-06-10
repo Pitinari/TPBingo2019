@@ -31,6 +31,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
 
   /**
    * Verifica que para cada columna, haya al menos una celda ocupada.
+   * @dataProvider cartones
    */
   public function testColumnaNoVacia(CartonInterface $carton) {
 	foreach($carton->columnas() as $columna){
@@ -40,6 +41,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
 
   /**
    * Verifica que no haya columnas de un carton con tres celdas ocupadas.
+   * @dataProvider cartones
    */
   public function testColumnaCompleta(CartonInterface $carton) {
     foreach($carton->columnas() as $columna){
