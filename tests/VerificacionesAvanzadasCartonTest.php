@@ -52,9 +52,16 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   /**
    * Verifica que solo hay exactamente tres columnas que tienen solo una celda
    * ocupada.
+   * @dataProvider cartones
    */
-  public function testTresCeldasIndividuales() {
-    $this->assertTrue(TRUE);
+  public function testTresCeldasIndividuales(CartonInterface $carton) {
+	$cont = 0;
+    foreach($carton->columnas() as $columna){
+	if(sizeof(celdas_ocupadas($columna)) == 1){
+		$cont++;
+	} 		
+	}  
+$this->assertEquals(3, cont);
   }
 
   /**
