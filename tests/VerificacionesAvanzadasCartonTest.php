@@ -24,9 +24,8 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    * @dataProvider cartones
    */
   public function testCincoNumerosPorFila(CartonInterface $carton) {
-    $fila = filas($carton);
-    for ($i=0; $i < sizeof($fila); $i++) {
-      $this->assertCount(5,numerosDelCarton($fila[i]));
+    foreach($carton->filas() as $fila){
+	$this->assertCount(5,celdas_ocupadas($fila));
     }
   }
 

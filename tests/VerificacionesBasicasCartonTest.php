@@ -15,7 +15,7 @@ use PHPUnit\Framework\TestCase;
  */
 function celdas_ocupadas(array $lista) {
   return array_filter($lista);
-}
+}	
 
 class VerificacionesBasicasCartonTest extends TestCase {
 

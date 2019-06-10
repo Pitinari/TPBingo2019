@@ -56,7 +56,7 @@ class CartonEjemplo implements CartonInterface {
     foreach ($this->filas() as $fila) {
       foreach ($fila as $celda) {
         if ($celda != 0) {
-          $numeros[] = $celda;
+          array_push($numeros,$celda);
         }
       }
     }
