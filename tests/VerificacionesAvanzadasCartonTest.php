@@ -21,9 +21,12 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
 
   /**
    * Verifica que cada fila de un carton tenga exactamente 5 celdas ocupadas.
+   * @dataProvider cartones
    */
-  public function testCincoNumerosPorFila() {
-    $this->assertTrue(TRUE);
+  public function testCincoNumerosPorFila(CartonInterface $carton) {
+    foreach (filas($carton) as $fila) {
+      $this->assertCount(5,numerosDelCarton($fila));
+    }
   }
 
   /**
