@@ -32,7 +32,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   /**
    * Verifica que para cada columna, haya al menos una celda ocupada.
    */
-  public function testColumnaNoVacia() {
+  public function testColumnaNoVacia(CartonInterface $carton) {
 	foreach($carton->columnas() as $columna){
 		$this->assertTrue(sizeof($columna) != 0);
 	}    
@@ -41,8 +41,10 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   /**
    * Verifica que no haya columnas de un carton con tres celdas ocupadas.
    */
-  public function testColumnaCompleta() {
-    $this->assertTrue(TRUE);
+  public function testColumnaCompleta(CartonInterface $carton) {
+    foreach($carton->columnas() as $columna){
+		$this->assertTrue(sizeof($columna) < 3);
+	}    
   }
 
   /**
