@@ -4,14 +4,14 @@ namespace Bingo;
 
 use PHPUnit\Framework\TestCase;
 
-$carton = new CartonEjemplo;
 
 class VerificacionesAvanzadasCartonTest extends TestCase {
 
   /**
    * Verifica que los números del carton se encuentren en el rango 1 a 90.
+   * @dataProvider cartones
    */
-  public function testUnoANoventa() {
+  public function testUnoANoventa(CartonInterface $carton) {
     foreach ($carton->filas() as $fila) {
       foreach (celdas_ocupadas($fila) as $celda) {
         $this->assertFalse(($celda > 90) || ($celda < 1));
@@ -61,6 +61,13 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
    */
   public function testFilasConVaciosUniformes() {
     $this->assertTrue(TRUE);
+  }
+
+  public function cartones() {
+    return [
+      [new CartonEjemplo],
+      [new CartonJs],
+    ];
   }
 
 }
