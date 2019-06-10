@@ -4,9 +4,10 @@ namespace Bingo;
 
 use PHPUnit\Framework\TestCase;
 
+$carton = new CartonEjemplo;
+
 class VerificacionesAvanzadasCartonTest extends TestCase {
 
-$carton = new CartonEjemplo;
   /**
    * Verifica que los números del carton se encuentren en el rango 1 a 90.
    */
