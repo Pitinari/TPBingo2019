@@ -6,11 +6,11 @@ class FabricaCartones {
 
   public function generarCarton() {
     // Algo de pseudo-código para ayudar con la evaluacion.
-    $carton = $this->intentoCarton();
-
-    if ($this->cartonEsValido($carton)) {
-      return $carton;
+		$carton= [];		
+		while(!$this->cartonEsValido($carton)){
+    	$carton = $this->intentoCarton();
     }
+		return $carton;
   }
 
   protected function cartonEsValido($carton) {
@@ -28,31 +28,74 @@ class FabricaCartones {
   }
 
   protected function validarUnoANoventa($carton) {
-
+		foreach ($carton->filas() as $fila) {
+      foreach (celdas_ocupadas($fila) as $celda) {
+        if(($celda > 90) || ($celda < 1))
+					return FALSE;
+      }
+    }
+		return TRUE;
   }
 
   protected function validarCincoNumerosPorFila($carton) {
-
+		foreach($carton->filas() as $fila){
+			if(5 != celdas_ocupadas($fila))
+				return FALSE;    
+		}
+		return TRUE;
   }
 
   protected function validarColumnaNoVacia($carton) {
-
+		foreach($carton->columnas() as $columna){
+			if(sizeof(celdas_ocupadas($columna)) == 0)
+				return FALSE;
+		}
+		return TRUE;
   }
 
   protected function validarColumnaCompleta($carton) {
-
+		foreach($carton->columnas() as $columna){
+			if(sizeof(celdas_ocupadas($columna)) >= 3)
+				return FALSE;
+		}
+		return TRUE;
   }
 
   protected function validarTresCeldasIndividuales($carton) {
-
+		$cont = 0;
+    foreach($carton->columnas() as $columna){
+			if(sizeof(celdas_ocupadas($columna)) == 1){
+				$cont++;
+			}
+		}
+		return ($cont == 3);
   }
 
   protected function validarNumerosIncrementales($carton) {
-
+		$columna = $carton->columnas();
+    for ($i=0; $i < sizeof($columna)-1; $i++) {
+      if(max(celdas_ocupadas($columna[$i])) >= min(celdas_ocupadas($columna[$i+1])))
+				return FALSE;
+    }
+		return TRUE;
   }
 
   protected function validarFilasConVaciosUniformes($carton) {
-
+		$cont=0;
+    foreach ($carton->filas() as $fila ) {
+      for ($i=0; $i < sizeof($fila); $i++) {
+        if ($fila[$i]==0) {
+          $cont++;
+        }
+        else {
+          $cont=0;
+        }
+        if($cont >= 3)
+					return FALSE;
+      }
+      $cont=0;
+    }
+		return TRUE;
   }
 
 
