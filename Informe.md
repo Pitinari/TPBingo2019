@@ -12,23 +12,22 @@ En cuanto a limitaciones no puede ignorar archivos ya trackeados por git. El arc
 
 Explicacion de cada linea:
 
-language: php                                 //Especifica el lenguaje de programacion usado
-php:										  //Version del lenguaje
-  - 7.2
+language: php                                 //Especifica el lenguaje de programacion usado   
+php:  
+  - 7.2										  //Version del lenguaje  
 
-install:									  //Comandos a ejecutar durante el paso de installacion
-  - composer update --prefer-source			  //Indica al composer que debe clonar el codigo fuente de los 
-  											  //paquetes
+install:									  //Comandos a ejecutar durante el paso de instalacion  
+  - composer update --prefer-source			  //Indica al composer que debe clonar el codigo fuente de los paquetes.  
 
-script:										  //Comandos a ejecutar durante el paso script
-  - php vendor/bin/phpunit --color tests	  //Ejecuta las pruebas y colorea la salida por terminal
+script:										  //Comandos a ejecutar durante el paso script  
+  - php vendor/bin/phpunit --color tests	  //Ejecuta las pruebas y colorea la salida por terminal  
 
 
-3.- 
-  - El composer.json describe las dependencias del proyecto, ademas de contener otro metadatos. 
-  - La diferencia que tiene con el composer.lock es que el composer.lock almacena las versiones exactas de las dependencias, de manera que al compartir el proyecto con otros colaboradores, todos utilizen las mismas versiones.
-  - El autoloader se encarga de cargar automaticamente las bibliotecas del proyecto, a medida que se vayan necesitando.
-  - La propiedad PSR-4, contiene los namespaces del proyecto. Un namespace es un 'alias' que se le asigna un path. De esta manera cuando el autoloader encuentre una referancia al alias, lo reemplazara por el path correspondiente.
+3.-  
+	- El composer.json describe las dependencias del proyecto, ademas de contener otro metadatos.  
+	- La diferencia que tiene con el composer.lock es que el composer.lock almacena las versiones exactas de las dependencias, de manera que al compartir el proyecto con otros colaboradores, todos utilizen las mismas versiones.  
+	- El autoloader se encarga de cargar automaticamente las bibliotecas del proyecto, a medida que se vayan necesitando.  
+	- La propiedad PSR-4, contiene los namespaces del proyecto. Un namespace es un 'alias' que se le asigna un path. De esta manera cuando el autoloader encuentre una referancia al alias, lo reemplazara por el path correspondiente.  
 
 
 4.- El equivalente a PHP Composer en NodeJS se denomina npm. En cuanto a Ruby el administrador de paquetes por defecto se denomina RubyGems. Sin embargo, pudimos encontrar otras alternativas como Bundler.
