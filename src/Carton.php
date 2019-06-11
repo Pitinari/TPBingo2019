@@ -37,6 +37,21 @@ class Carton implements CartonInterface {
   /**
    * {@inheritdoc}
    */
+  public function numerosDelCarton() {
+    $numeros = [];
+    foreach ($this->filas() as $fila) {
+      foreach ($fila as $celda) {
+        if ($celda != 0) {
+          array_push($numeros,$celda);
+        }
+      }
+    }
+    return $numeros;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function tieneNumero(int $numero) {
     return in_array($numero, $this->numerosDelCarton());
   }
