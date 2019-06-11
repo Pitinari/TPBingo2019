@@ -78,9 +78,22 @@ $this->assertEquals(3, $cont);
 
   /**
    * Verifica que en una fila no existan más de dos celdas vacias consecutivas.
+   * @dataProvider cartones
    */
-  public function testFilasConVaciosUniformes() {
-    $this->assertTrue(TRUE);
+  public function testFilasConVaciosUniformes(CartonInterface $carton) {
+    $cont=0;
+    foreach ($carton->filas() as $fila ) {
+      for ($i=0; $i < sizeof($fila); $i++) {
+        if ($fila[$i]==0) {
+          $cont++;
+        }
+        else {
+          $cont=0;
+        }
+        $this->assertTrue($cont < 3);
+      }
+      $cont=0;
+    }
   }
 
   public function cartones() {
