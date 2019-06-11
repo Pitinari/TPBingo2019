@@ -36,7 +36,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   public function testColumnaNoVacia(CartonInterface $carton) {
 	foreach($carton->columnas() as $columna){
 		$this->assertTrue(sizeof(celdas_ocupadas($columna)) != 0);
-	}    
+	}
   }
 
   /**
@@ -46,7 +46,7 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
   public function testColumnaCompleta(CartonInterface $carton) {
     foreach($carton->columnas() as $columna){
 		$this->assertTrue(sizeof(celdas_ocupadas($columna)) < 3);
-	}    
+	}
   }
 
   /**
@@ -59,24 +59,41 @@ class VerificacionesAvanzadasCartonTest extends TestCase {
     foreach($carton->columnas() as $columna){
 	if(sizeof(celdas_ocupadas($columna)) == 1){
 		$cont++;
-	} 		
-	}  
+	}
+	}
 $this->assertEquals(3, $cont);
   }
 
   /**
    * Verifica que los números de las columnas izquierdas son menores que los de
    * las columnas a la derecha.
+   * @dataProvider cartones
    */
-  public function testNumerosIncrementales() {
-    $this->assertTrue(TRUE);
+  public function testNumerosIncrementales(CartonInterface $carton) {
+    $columna = $carton->columnas();
+    for ($i=0; $i < sizeof($columna)-1; $i++) {
+      $this->assertTrue(max(celdas_ocupadas($columna[$i])) < min(celdas_ocupadas($columna[$i+1])));
+    }
   }
 
   /**
    * Verifica que en una fila no existan más de dos celdas vacias consecutivas.
+   * @dataProvider cartones
    */
-  public function testFilasConVaciosUniformes() {
-    $this->assertTrue(TRUE);
+  public function testFilasConVaciosUniformes(CartonInterface $carton) {
+    $cont=0;
+    foreach ($carton->filas() as $fila ) {
+      for ($i=0; $i < sizeof($fila); $i++) {
+        if ($fila[$i]==0) {
+          $cont++;
+        }
+        else {
+          $cont=0;
+        }
+        $this->assertTrue($cont < 3);
+      }
+      $cont=0;
+    }
   }
 
   public function cartones() {
