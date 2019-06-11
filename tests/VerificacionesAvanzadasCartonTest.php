@@ -101,8 +101,8 @@ $this->assertEquals(3, $cont);
    */
   public function cartones() {
     return [
-      [new CartonJs]//,
-	//[new Carton((new FabricaCartones)->generarCarton())]
+      [new CartonJs],
+[new Carton((new FabricaCartones)->generarCarton())]
     ];
   }
 }
