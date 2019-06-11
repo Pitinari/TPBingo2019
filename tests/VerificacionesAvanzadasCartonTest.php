@@ -95,4 +95,14 @@ $this->assertEquals(3, $cont);
       $cont=0;
     }
   }
+
+/**
+   * Devuelve una lista de objetos para usar con dataProvider
+   */
+  public function cartones() {
+    return [
+      [new CartonJs],
+			[new Carton((new FabricaCartones)->generarCarton())]
+    ];
+  }
 }
