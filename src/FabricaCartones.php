@@ -28,8 +28,8 @@ class FabricaCartones {
   }
 
   protected function validarUnoANoventa($carton) {
-		foreach ($carton->filas() as $fila) {
-      foreach (celdas_ocupadas($fila) as $celda) {
+		foreach ($this->filas($carton) as $fila) {
+      foreach ($this->celdas_ocupadas($fila) as $celda) {
         if(($celda > 90) || ($celda < 1))
 					return FALSE;
       }
@@ -38,24 +38,24 @@ class FabricaCartones {
   }
 
   protected function validarCincoNumerosPorFila($carton) {
-		foreach($carton->filas() as $fila){
-			if(5 != celdas_ocupadas($fila))
+		foreach($this->filas($carton) as $fila){
+			if(5 != $this->celdas_ocupadas($fila))
 				return FALSE;    
 		}
 		return TRUE;
   }
 
   protected function validarColumnaNoVacia($carton) {
-		foreach($carton->columnas() as $columna){
-			if(sizeof(celdas_ocupadas($columna)) == 0)
+		foreach($this->columnas($carton) as $columna){
+			if(sizeof($this->celdas_ocupadas($columna)) == 0)
 				return FALSE;
 		}
 		return TRUE;
   }
 
   protected function validarColumnaCompleta($carton) {
-		foreach($carton->columnas() as $columna){
-			if(sizeof(celdas_ocupadas($columna)) >= 3)
+		foreach($this->columnas($carton) as $columna){
+			if(sizeof($this->celdas_ocupadas($columna)) >= 3)
 				return FALSE;
 		}
 		return TRUE;
@@ -63,8 +63,8 @@ class FabricaCartones {
 
   protected function validarTresCeldasIndividuales($carton) {
 		$cont = 0;
-    foreach($carton->columnas() as $columna){
-			if(sizeof(celdas_ocupadas($columna)) == 1){
+    foreach($this->columnas($carton) as $columna){
+			if(sizeof($this->celdas_ocupadas($columna)) == 1){
 				$cont++;
 			}
 		}
@@ -72,9 +72,9 @@ class FabricaCartones {
   }
 
   protected function validarNumerosIncrementales($carton) {
-		$columna = $carton->columnas();
+		$columna = $this->columnas($carton);
     for ($i=0; $i < sizeof($columna)-1; $i++) {
-      if(max(celdas_ocupadas($columna[$i])) >= min(celdas_ocupadas($columna[$i+1])))
+      if(max($this->celdas_ocupadas($columna[$i])) >= min($this->celdas_ocupadas($columna[$i+1])))
 				return FALSE;
     }
 		return TRUE;
@@ -82,7 +82,7 @@ class FabricaCartones {
 
   protected function validarFilasConVaciosUniformes($carton) {
 		$cont=0;
-    foreach ($carton->filas() as $fila ) {
+    foreach ($this->filas($carton) as $fila ) {
       for ($i=0; $i < sizeof($fila); $i++) {
         if ($fila[$i]==0) {
           $cont++;
@@ -173,5 +173,24 @@ class FabricaCartones {
     return $carton;
   }
 
+
+  public function filas($numeros_carton) {
+    return $numeros_carton;
+  }
+
+  
+  public function columnas($numeros_carton) {
+    $columna = [];
+    for ($i=0; $i < sizeof($numeros_carton); $i++) {
+      for ($j=0; $j < sizeof($numeros_carton[$i]); $j++) {
+        $columna[$j][$i] = $numeros_carton[$i][$j];
+      }
+    }
+    return $columna;
+  }
+
+	function celdas_ocupadas(array $lista) {
+		return array_filter($lista);
+	}	
 
 }
