@@ -95,12 +95,4 @@ $this->assertEquals(3, $cont);
       $cont=0;
     }
   }
-
-  public function cartones() {
-    return [
-      [new CartonEjemplo],
-      [new CartonJs],
-    ];
-  }
-
 }
