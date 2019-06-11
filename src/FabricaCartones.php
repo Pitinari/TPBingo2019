@@ -175,18 +175,18 @@ class FabricaCartones {
 
 
   public function filas($numeros_carton) {
-    return $numeros_carton;
-  }
-
-  
-  public function columnas($numeros_carton) {
-    $columna = [];
+		$columna = [];
     for ($i=0; $i < sizeof($numeros_carton); $i++) {
       for ($j=0; $j < sizeof($numeros_carton[$i]); $j++) {
         $columna[$j][$i] = $numeros_carton[$i][$j];
       }
     }
-    return $columna;
+    return $columna;    
+  }
+
+  
+  public function columnas($numeros_carton) {
+    return $numeros_carton;
   }
 
 	function celdas_ocupadas(array $lista) {
