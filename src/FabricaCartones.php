@@ -6,7 +6,7 @@ class FabricaCartones {
 
   public function generarCarton() {
     // Algo de pseudo-código para ayudar con la evaluacion.
-		$carton= [];		
+		$carton= [];
 		while(!$this->cartonEsValido($carton)){
     	$carton = $this->columnas($this->intentoCarton());
     }
@@ -39,8 +39,8 @@ class FabricaCartones {
 
   protected function validarCincoNumerosPorFila($carton) {
 		foreach($this->filas($carton) as $fila){
-			if(5 != $this->celdas_ocupadas($fila))
-				return FALSE;    
+      if(sizeof($this->celdas_ocupadas($fila)) != 5)
+				return FALSE;
 		}
 		return TRUE;
   }
@@ -178,7 +178,7 @@ class FabricaCartones {
     return $numeros_carton;
   }
 
-  
+
   public function columnas($numeros_carton) {
     $columna = [];
     for ($i=0; $i < sizeof($numeros_carton); $i++) {
@@ -191,6 +191,6 @@ class FabricaCartones {
 
 	function celdas_ocupadas(array $lista) {
 		return array_filter($lista);
-	}	
+	}
 
 }
